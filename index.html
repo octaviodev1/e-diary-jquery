@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Example</title>
+    <link rel="stylesheet" href="app.css" />
+  </head>
+  <body>
+    <button class="btn-link" data-route="/index.html#ejemplo">Ejemplo</button>
+
+    <button class="btn-link" data-route="/index.html#login">login</button>
+
+    <button class="btn-link" data-route="/index.html#dashboard">
+      Dashboard
+    </button>
+
+    <section class="section" id="ejemplo-page">Example page</section>
+
+    <section class="section" id="login-page">
+      <h1>Login page</h1>
+      Nombre de usuario : <input type="text" id="login-name" />
+      <button id="btn-login">iniciar sesión</button>
+    </section>
+
+    <section class="section" id="dashboard-page">
+      <button id="btn-dashboard-login">Ver datos de usuario</button>
+    </section>
+  </body>
+
+  <script
+    src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ="
+    crossorigin="anonymous"
+  ></script>
+  <script src="https://cdn.jsdelivr.net/npm/jqueryrouter@2.2.11/dist/js/jquery.router.min.js"></script>
+  <script src="index.js" type="module"></script>
+  <script src="login.js" type="module"></script>
+  <script src="dashboard.js" type="module"></script>
+</html>
