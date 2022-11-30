@@ -8,24 +8,76 @@
     <link rel="stylesheet" href="app.css" />
   </head>
   <body>
-    <button class="btn-link" data-route="/index.html#ejemplo">Ejemplo</button>
+    <button class="btn-link" data-route="/index.html#home">Home Page</button>
 
-    <button class="btn-link" data-route="/index.html#login">login</button>
+    <button class="btn-link" data-route="/index.html#login">Login</button>
 
     <button class="btn-link" data-route="/index.html#dashboard">
       Dashboard
     </button>
 
-    <section class="section" id="ejemplo-page">Example page</section>
+    <section class="section" id="home-page">
+      <h1>Home page</h1>
+      <img src="/home-image.png" />
+    </section>
 
     <section class="section" id="login-page">
       <h1>Login page</h1>
       Nombre de usuario : <input type="text" id="login-name" />
       <button id="btn-login">iniciar sesión</button>
+
+      <p>Register here:</p>
+      <button class="btn-link" data-route="/index.html#register">
+        Register Page
+      </button>
     </section>
 
     <section class="section" id="dashboard-page">
       <button id="btn-dashboard-login">Ver datos de usuario</button>
+    </section>
+
+    <section class="section" id="register-page">
+      <h1>Register page</h1>
+      <form id="formUser" method="post" name="register" action="/registeruser">
+        <div class="nickname">
+          <label for="nickname" class="required">Nickname:</label><br />
+          <input
+            type="text"
+            id="nickname"
+            name="nickname"
+            placeholder="Enter your nickname"
+            title="example text"
+          /><br />
+          <span class="error" id="errorNickname"></span><br /><br />
+        </div>
+
+        <div class="password">
+          <label for="password" class="required">Password:</label><br />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter a valid password"
+            title="example text"
+          /><br />
+          <span class="error" id="errorPassword"></span><br /><br />
+        </div>
+
+        <div class="register">
+          <input
+            type="submit"
+            id="buttonRegisterUser"
+            value="Register User"
+            class="registerUser"
+          />
+        </div>
+      </form>
+      <button
+        class="btn-link"
+        data-route="/index.html#login"
+        style="display: none"
+        id="btn-backToLogin"
+      ></button>
     </section>
   </body>
 
@@ -38,4 +90,5 @@
   <script src="index.js" type="module"></script>
   <script src="login.js" type="module"></script>
   <script src="dashboard.js" type="module"></script>
+  <script src="register.js" type="module"></script>
 </html>
