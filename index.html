@@ -23,7 +23,14 @@
 
     <section class="section" id="login-page">
       <h1>Login page</h1>
-      Nombre de usuario : <input type="text" id="login-name" />
+      <label for="login-nickname" class="required">Nickname:</label>
+      <input type="text" id="login-nickname" /><br />
+      <span class="error" id="error-login-nickname"></span><br /><br />
+
+      <label for="login-password" class="required">Password:</label>
+      <input type="password" id="login-password" /><br />
+      <span class="error" id="error-login-password"></span><br /><br />
+
       <button id="btn-login">iniciar sesión</button>
 
       <p>Register here:</p>

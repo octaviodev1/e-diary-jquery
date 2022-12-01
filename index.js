@@ -6,7 +6,7 @@ const onPageWithHashLoaded = () => {
   switch (currentRoute) {
     // TODO: Cases
     case "#login": {
-      console.log("example");
+      // console.log("example");
       break;
     }
   }
