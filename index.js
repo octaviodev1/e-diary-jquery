@@ -79,10 +79,8 @@ $("#btn-loginPage").on("click", (e) => {
   }
 });
 
-$("btn-dashboardPage").on("click", (e) => {
-  console.log("here?");
-  console.log(JSON.parse(localStorage.getItem("logged")));
+$("#btn-dashboardPage").on("click", (e) => {
   if (JSON.parse(localStorage.getItem("logged")) == false) {
-    console.log("logged falso");
+    document.getElementById("btn-backToLogin").click();
   }
 });
