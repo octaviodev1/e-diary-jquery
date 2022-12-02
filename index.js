@@ -2,6 +2,12 @@ $.router.init();
 
 var currentRoute = "";
 
+const notLogged = () => {
+  localStorage.setItem("logged", false);
+};
+
+$(window).on("load", notLogged);
+
 const onPageWithHashLoaded = () => {
   switch (currentRoute) {
     // TODO: Cases
@@ -66,3 +72,17 @@ $(window)
     }
   })
   .trigger("hashchange");
+
+$("#btn-loginPage").on("click", (e) => {
+  if (JSON.parse(localStorage.getItem("logged")) == true) {
+    document.getElementById("btn-alreadyLogged").click();
+  }
+});
+
+$("btn-dashboardPage").on("click", (e) => {
+  console.log("here?");
+  console.log(JSON.parse(localStorage.getItem("logged")));
+  if (JSON.parse(localStorage.getItem("logged")) == false) {
+    console.log("logged falso");
+  }
+});

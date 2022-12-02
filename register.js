@@ -50,6 +50,7 @@ const returnToLoginPage = () => {
   document.getElementById("btn-backToLogin").click();
 };
 
+
 $("#formUser").on("submit", function (e) {
   e.preventDefault();
   validationRegisterInputs(e);

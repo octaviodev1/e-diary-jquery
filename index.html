@@ -10,9 +10,15 @@
   <body>
     <button class="btn-link" data-route="/index.html#home">Home Page</button>
 
-    <button class="btn-link" data-route="/index.html#login">Login</button>
+    <button class="btn-link" data-route="/index.html#login" id="btn-loginPage">
+      Login
+    </button>
 
-    <button class="btn-link" data-route="/index.html#dashboard">
+    <button
+      class="btn-link"
+      data-route="/index.html#dashboard"
+      id="btn-dashboardPage"
+    >
       Dashboard
     </button>
 
@@ -37,6 +43,20 @@
       <button class="btn-link" data-route="/index.html#register">
         Register Page
       </button>
+
+      <button
+        class="btn-link"
+        data-route="/index.html#dashboard"
+        style="display: none"
+        id="btn-goToDashboard"
+      ></button>
+
+      <button
+        class="btn-link"
+        data-route="/index.html#logged"
+        style="display: none"
+        id="btn-alreadyLogged"
+      ></button>
     </section>
 
     <section class="section" id="dashboard-page">
@@ -86,6 +106,20 @@
         id="btn-backToLogin"
       ></button>
     </section>
+
+    <section class="section" id="logged-page">
+      <h1>Already logged</h1>
+      <button class="logout" id="btn-logout">Logout</button>
+
+      <button
+        class="btn-link"
+        data-route="/index.html#home"
+        style="display: none"
+        id="btn-backToHome"
+      ></button>
+
+      <!-- Boton de cerrar cuenta (clear local storage) e informacion de usuario-->
+    </section>
   </body>
 
   <script
@@ -98,4 +132,5 @@
   <script src="login.js" type="module"></script>
   <script src="dashboard.js" type="module"></script>
   <script src="register.js" type="module"></script>
+  <script src="logged.js" type="module"></script>
 </html>

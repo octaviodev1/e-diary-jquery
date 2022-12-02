@@ -1,11 +1,4 @@
 $("#btn-login").on("click", (e) => {
-  /*const userName = $("#login-name").val();
-
-  localStorage.setItem(
-    "loggedInUser",
-    JSON.stringify({ id: 1, userName, password: 1234 })
-  );
-*/
   let loginNickname = $("#login-nickname");
   let loginPassword = $("#login-password");
 
@@ -28,6 +21,8 @@ $("#btn-login").on("click", (e) => {
         if (usersData[i].nickname == loginNickname.val()) {
           if (usersData[i].password == loginPassword.val()) {
             localStorage.setItem("loggedInUser", JSON.stringify(usersData[i]));
+            localStorage.setItem("logged", true);
+            sendToDashboardPage();
             break;
           } else {
             errorLoginPassword.text("Incorrect password");
@@ -55,4 +50,8 @@ const transformData = (data) => {
     transformedData.push(dataObj);
   }
   return transformedData;
+};
+
+const sendToDashboardPage = () => {
+  document.getElementById("btn-goToDashboard").click();
 };
