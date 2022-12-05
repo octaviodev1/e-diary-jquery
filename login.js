@@ -15,9 +15,30 @@ $("#btn-login").on("click", (e) => {
       let errorLoginNickname = $("#error-login-nickname");
       let errorLoginPassword = $("#error-login-password");
 
+      let exampl = usersData.filter(function (obj) {
+        return (
+          obj.nickname == loginNickname.val() &&
+          obj.password == loginPassword.val()
+        );
+      });
+      console.log(exampl);
+      /*
+      const example2 = (obj) => {
+        console.log(loginNickname.val());
+        console.log(obj);
+        if ("nickname" in obj == loginNickname.val()) {
+          return true;
+        } else {
+          return false;
+        }
+      };
+      let example = usersData.filter(example2);
+      console.log(example);
+      
       for (let i = 0; i < usersData.length; i++) {
         errorLoginNickname.text("");
         errorLoginPassword.text("");
+        
         if (usersData[i].nickname == loginNickname.val()) {
           if (usersData[i].password == loginPassword.val()) {
             localStorage.setItem("loggedInUser", JSON.stringify(usersData[i]));
@@ -33,8 +54,9 @@ $("#btn-login").on("click", (e) => {
           errorLoginPassword.text("Incorrect password");
           loginNickname.val("");
           loginPassword.val("");
-        }
-      }
+        
+      }}
+      */
     });
 });
 

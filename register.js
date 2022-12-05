@@ -35,6 +35,8 @@ const validationRegisterInputs = (e) => {
   };
 
   if (valid.every(checkData)) {
+    nickname.val("");
+    password.val("");
     fetch(
       "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/users.json",
       {
@@ -49,7 +51,6 @@ const validationRegisterInputs = (e) => {
 const returnToLoginPage = () => {
   document.getElementById("btn-backToLogin").click();
 };
-
 
 $("#formUser").on("submit", function (e) {
   e.preventDefault();

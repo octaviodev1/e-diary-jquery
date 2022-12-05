@@ -8,23 +8,40 @@
     <link rel="stylesheet" href="app.css" />
   </head>
   <body>
-    <button class="btn-link" data-route="/index.html#home">Home Page</button>
+    <nav>
+      <ul>
+        <li>
+          <button class="btn-link" data-route="/index.html#home">
+            Home Page
+          </button>
+        </li>
 
-    <button class="btn-link" data-route="/index.html#login" id="btn-loginPage">
-      Login
-    </button>
+        <li>
+          <button
+            class="btn-link"
+            data-route="/index.html#login"
+            id="btn-loginPage"
+          >
+            Login
+          </button>
+        </li>
 
-    <button
-      class="btn-link"
-      data-route="/index.html#dashboard"
-      id="btn-dashboardPage"
-    >
-      Dashboard
-    </button>
+        <li>
+          <button
+            class="btn-link"
+            data-route="/index.html#dashboard"
+            id="btn-dashboardPage"
+          >
+            Dashboard
+          </button>
+        </li>
+      </ul>
+    </nav>
 
     <section class="section" id="home-page">
-      <h1>Home page</h1>
-      <img src="/home-image.png" />
+      <h1>e-Diary</h1>
+      <h4>Plese login to begin.</h5>
+      <img class="homeImage" src="/home-image.png" />
     </section>
 
     <section class="section" id="login-page">
