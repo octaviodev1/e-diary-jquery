@@ -14,49 +14,53 @@ $("#btn-login").on("click", (e) => {
       let usersData = data;
       let errorLoginNickname = $("#error-login-nickname");
       let errorLoginPassword = $("#error-login-password");
+      let valid = [];
 
-      let exampl = usersData.filter(function (obj) {
+      const userLogging = (user) => {
         return (
-          obj.nickname == loginNickname.val() &&
-          obj.password == loginPassword.val()
+          user.nickname == loginNickname.val() &&
+          user.password == loginPassword.val()
         );
-      });
-      console.log(exampl);
-      /*
-      const example2 = (obj) => {
-        console.log(loginNickname.val());
-        console.log(obj);
-        if ("nickname" in obj == loginNickname.val()) {
-          return true;
-        } else {
-          return false;
-        }
       };
-      let example = usersData.filter(example2);
-      console.log(example);
-      
-      for (let i = 0; i < usersData.length; i++) {
+
+      if (loginNickname.val() == null || loginNickname.val() == "") {
+        errorLoginNickname.text("Please enter a nickname");
+        valid.push("false");
+      } else {
         errorLoginNickname.text("");
+        valid.push("true");
+      }
+
+      if (loginPassword.val() == null || loginPassword.val() == "") {
+        errorLoginPassword.text("Please enter a password");
+        valid.push("false");
+      } else {
         errorLoginPassword.text("");
-        
-        if (usersData[i].nickname == loginNickname.val()) {
-          if (usersData[i].password == loginPassword.val()) {
-            localStorage.setItem("loggedInUser", JSON.stringify(usersData[i]));
-            localStorage.setItem("logged", true);
-            sendToDashboardPage();
-            break;
-          } else {
-            errorLoginPassword.text("Incorrect password");
-            loginPassword.val("");
-          }
-        } else {
-          errorLoginNickname.text("User not found");
-          errorLoginPassword.text("Incorrect password");
+        valid.push("true");
+      }
+      const checkData = (element) => {
+        return element === "true";
+      };
+
+      if (valid.every(checkData)) {
+        let userLogged = usersData.filter(userLogging);
+        if (userLogged.length == 0) {
+          errorLoginNickname.text("User don't match");
+          errorLoginPassword.text("Password don't match");
           loginNickname.val("");
           loginPassword.val("");
-        
-      }}
-      */
+        } else {
+          localStorage.setItem("loggedInUser", JSON.stringify(userLogged));
+          localStorage.setItem("logged", true);
+          loginNickname.val("");
+          loginPassword.val("");
+          sendToDashboardPage();
+        }
+      }
+      
+      if (JSON.parse(localStorage.getItem("logged")) == true) {
+        $("#btn-loginPage").text("User");
+      }
     });
 });
 
