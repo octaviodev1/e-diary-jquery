@@ -40,7 +40,7 @@
 
     <section class="section" id="home-page">
       <h1>e-Diary</h1>
-      <h4>Plese login to begin.</h5>
+      <h4>Plese login to begin.</h4>
       <img class="homeImage" src="/home-image.png" />
     </section>
 
@@ -84,27 +84,69 @@
       <h1>Register page</h1>
       <form id="formUser" method="post" name="register" action="/registeruser">
         <div class="nickname">
-          <label for="nickname" class="required">Nickname:</label><br />
+          <label for="register-nickname" class="required">Nickname:</label
+          ><br />
           <input
             type="text"
-            id="nickname"
+            id="register-nickname"
             name="nickname"
             placeholder="Enter your nickname"
             title="example text"
           /><br />
-          <span class="error" id="errorNickname"></span><br /><br />
+          <span class="error" id="error-register-nickname"></span><br /><br />
+        </div>
+
+        <div class="email">
+          <label for="email" class="required">Email: </label><br />
+          <input
+            type="email"
+            id="email-register"
+            name="email"
+            placeholder="Enter a valid email"
+            title="example text"
+          /><br />
+          <span class="error" id="error-register-email"></span><br /><br />
+        </div>
+
+        <div class="mobileNumber">
+          <label for="register-mobile" class="required">Mobile Number:</label
+          ><br />
+          <input
+            type="number"
+            id="register-mobile-Number"
+            name="mobileNumber"
+            placeholder="Enter a valid Mobile Number"
+            title="example text"
+          /><br />
+          <span class="error" id="error-register-mobile"></span><br /><br />
         </div>
 
         <div class="password">
-          <label for="password" class="required">Password:</label><br />
+          <label for="register-password" class="required">Password:</label
+          ><br />
           <input
             type="password"
-            id="password"
+            id="register-password"
             name="password"
             placeholder="Enter a valid password"
             title="example text"
           /><br />
-          <span class="error" id="errorPassword"></span><br /><br />
+          <span class="error" id="error-register-password"></span><br /><br />
+        </div>
+
+        <div class="confirmPassword">
+          <label for="register-password" class="required"
+            >Confirm Password:</label
+          ><br />
+          <input
+            type="password"
+            id="register-confirm-password"
+            name="confirmPassword"
+            placeholder="Confirm your password"
+            title="example text"
+          /><br />
+          <span class="error" id="error-register-confirm-password"></span
+          ><br /><br />
         </div>
 
         <div class="register">

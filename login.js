@@ -38,6 +38,7 @@ $("#btn-login").on("click", (e) => {
         errorLoginPassword.text("");
         valid.push("true");
       }
+      
       const checkData = (element) => {
         return element === "true";
       };

@@ -1,15 +1,10 @@
 * {
   font-family: sans-serif;
 }
-h1 {
-  margin-top: 2%;
-  margin-left: 5%;
-}
-h4 {
-  margin-left: 5%;
-}
+
 section {
-  margin-left: 5%;
+  margin-left: 10%;
+  margin-top: 2%;
 }
 .section {
   display: none;
