@@ -38,7 +38,7 @@ $("#btn-login").on("click", (e) => {
         errorLoginPassword.text("");
         valid.push("true");
       }
-      
+
       const checkData = (element) => {
         return element === "true";
       };
@@ -58,7 +58,7 @@ $("#btn-login").on("click", (e) => {
           sendToDashboardPage();
         }
       }
-      
+
       if (JSON.parse(localStorage.getItem("logged")) == true) {
         $("#btn-loginPage").text("User");
       }
@@ -82,3 +82,5 @@ const transformData = (data) => {
 const sendToDashboardPage = () => {
   document.getElementById("btn-goToDashboard").click();
 };
+
+export { transformData };

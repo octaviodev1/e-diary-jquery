@@ -53,3 +53,11 @@ nav li:hover {
   margin-right: auto;
   width: 60%;
 }
+
+.btn-hide {
+  display: none;
+}
+
+.categoryLabel {
+  margin-right: 15px;
+}

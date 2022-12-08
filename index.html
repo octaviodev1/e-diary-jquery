@@ -35,6 +35,16 @@
             Dashboard
           </button>
         </li>
+
+        <li>
+          <button
+            class="btn-link"
+            data-route="/index.html#categories"
+            id="btn-categoriesPage"
+          >
+            Categories
+          </button>
+        </li>
       </ul>
     </nav>
 
@@ -62,16 +72,14 @@
       </button>
 
       <button
-        class="btn-link"
+        class="btn-link btn-hide"
         data-route="/index.html#dashboard"
-        style="display: none"
         id="btn-goToDashboard"
       ></button>
 
       <button
-        class="btn-link"
+        class="btn-link btn-hide"
         data-route="/index.html#logged"
-        style="display: none"
         id="btn-alreadyLogged"
       ></button>
     </section>
@@ -159,9 +167,8 @@
         </div>
       </form>
       <button
-        class="btn-link"
+        class="btn-link btn-hide"
         data-route="/index.html#login"
-        style="display: none"
         id="btn-backToLogin"
       ></button>
     </section>
@@ -171,13 +178,58 @@
       <button class="logout" id="btn-logout">Logout</button>
 
       <button
-        class="btn-link"
+        class="btn-link btn-hide"
         data-route="/index.html#home"
-        style="display: none"
         id="btn-backToHome"
       ></button>
+    </section>
 
-      <!-- Boton de cerrar cuenta (clear local storage) e informacion de usuario-->
+    <section class="section" id="categories-page">
+      <h1>Add Category</h1>
+      <form
+        id="formCategories"
+        method="post"
+        name="categories"
+        action="/categories"
+      >
+        <label for="addCategory" class="required categoryLabel"
+          >Category Name:</label
+        >
+        <input
+          type="text"
+          id="addCategory"
+          name="category"
+          placeholder="Enter category Name"
+        /><br />
+
+        <input
+          type="submit"
+          id="buttonAddCategory"
+          value="Add Category "
+          class="addCategorySubmit"
+        />
+      </form>
+
+      <h1>Manage Categories</h1>
+      <button
+      class="btn-hide"
+      id="btn-updateCategories"
+    ></button>
+
+      <table id="categoriesTable" class="styled-table">
+        <thead>
+          <tr class="active-row">
+            <th>ID</th>
+            <th>Category</th>
+            <!-- <th>Date of Birth</th>
+            <th>E-mail</th>
+            <th></th>
+            <th></th>
+            <th></th> -->
+          </tr>
+        </thead>
+        <tbody id="data"></tbody>
+      </table>
     </section>
   </body>
 
@@ -192,4 +244,5 @@
   <script src="dashboard.js" type="module"></script>
   <script src="register.js" type="module"></script>
   <script src="logged.js" type="module"></script>
+  <script src="categories.js" type="module"></script>
 </html>

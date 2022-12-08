@@ -84,3 +84,9 @@ $("#btn-dashboardPage").on("click", (e) => {
     document.getElementById("btn-backToLogin").click();
   }
 });
+
+$("#btn-categoriesPage").on("click", (e) => {
+  if (JSON.parse(localStorage.getItem("logged")) == false) {
+    document.getElementById("btn-backToLogin").click();
+  }
+});
