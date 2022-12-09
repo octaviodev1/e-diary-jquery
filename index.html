@@ -185,7 +185,7 @@
     </section>
 
     <section class="section" id="categories-page">
-      <h1>Add Category</h1>
+      <h1 class="changeInEdit">Add Category</h1>
       <form
         id="formCategories"
         method="post"
@@ -199,8 +199,9 @@
           type="text"
           id="addCategory"
           name="category"
-          placeholder="Enter category Name"
+          placeholder="Enter Category Name"
         /><br />
+        <span class="error" id="error-add-category"></span><br /><br />
 
         <input
           type="submit"
@@ -210,16 +211,12 @@
         />
       </form>
 
-      <h1>Manage Categories</h1>
-      <button
-      class="btn-hide"
-      id="btn-updateCategories"
-    ></button>
+      <h1 class="notHide">Manage Categories</h1>
+      <button class="btn-hide" id="btn-updateCategories"></button>
 
-      <table id="categoriesTable" class="styled-table">
+      <table id="categoriesTable" class="styled-table notHide">
         <thead>
           <tr class="active-row">
-            <th>ID</th>
             <th>Category</th>
             <!-- <th>Date of Birth</th>
             <th>E-mail</th>
@@ -228,7 +225,7 @@
             <th></th> -->
           </tr>
         </thead>
-        <tbody id="data"></tbody>
+        <tbody id="categoriesData"></tbody>
       </table>
     </section>
   </body>

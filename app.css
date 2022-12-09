@@ -61,3 +61,7 @@ nav li:hover {
 .categoryLabel {
   margin-right: 15px;
 }
+
+.hide {
+  display: none;
+}

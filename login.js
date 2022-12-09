@@ -55,6 +55,7 @@ $("#btn-login").on("click", (e) => {
           localStorage.setItem("logged", true);
           loginNickname.val("");
           loginPassword.val("");
+          updateCategories();
           sendToDashboardPage();
         }
       }
@@ -78,9 +79,13 @@ const transformData = (data) => {
   }
   return transformedData;
 };
+const updateCategories = () => {
+  document.getElementById("btn-updateCategories").click();
+};
 
 const sendToDashboardPage = () => {
   document.getElementById("btn-goToDashboard").click();
 };
 
 export { transformData };
+export { updateCategories };
