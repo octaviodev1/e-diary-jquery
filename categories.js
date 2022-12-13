@@ -37,28 +37,35 @@ $("#formCategories").on("submit", (e) => {
       const categoryValidation = (category) => {
         return category === addCategoryInput.val();
       };
-
-      if (addCategoryInput.val() == null || addCategoryInput.val() == "") {
-        errorAddCategory.text("Please enter a category name");
-      } else if (actualCategoriesForValidation.filter(categoryValidation)) {
-        errorAddCategory.text("Category already exists");
+      if (JSON.parse(localStorage.getItem("isEditing")) == true) {
+        return;
       } else {
-        let categoryPost = {};
-        let userCategory = $("#addCategory");
-        let loggedUserId = JSON.parse(localStorage.getItem("loggedInUser"))[0]
-          .id;
+        if (addCategoryInput.val() == null || addCategoryInput.val() == "") {
+          errorAddCategory.text("Please enter a category name");
+        } else if (
+          actualCategoriesForValidation.filter(categoryValidation).length > 0
+        ) {
+          errorAddCategory.text("Category already exists");
+        } else {
+          errorAddCategory.text("");
+          let categoryPost = {};
+          let userCategory = $("#addCategory");
+          let loggedUserId = JSON.parse(localStorage.getItem("loggedInUser"))[0]
+            .id;
 
-        categoryPost.userId = loggedUserId;
-        categoryPost.category = userCategory.val();
+          categoryPost.userId = loggedUserId;
+          categoryPost.category = userCategory.val();
 
-        fetch(
-          "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/categories.json",
-          {
-            method: "POST",
-            body: JSON.stringify(categoryPost),
-          }
-        ).then(userCategory.val(""));
-        updateCategories();
+          fetch(
+            "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/categories.json",
+            {
+              method: "POST",
+              body: JSON.stringify(categoryPost),
+            }
+          )
+            .then(userCategory.val(""))
+            .then(updateCategories());
+        }
       }
     });
 });
@@ -127,37 +134,37 @@ $("#btn-updateCategories").on("click", (e) => {
       // Button for MODIFY Category
 
       $(".buttonModifyCategory").on("click", (e) => {
-        // actualIdCategories       actualIndexCategories
-
         let actualIndexCategory = e.target.id.split("category")[1];
 
         const filteredCategory = actualIndexCategories.filter((item) => {
           return actualIndexCategories.indexOf(item) == actualIndexCategory;
         });
-        console.log(actualIndexCategories);
+
+        let loggedUserId = JSON.parse(localStorage.getItem("loggedInUser"))[0]
+          .id;
 
         const dataToUpdate = {
+          userId: loggedUserId,
           category: filteredCategory,
         };
-
-        console.log(filteredCategory);
 
         localStorage.setItem("isEditing", true);
 
         $(".notHide").toggleClass("hide");
         $("#buttonAddCategory").val("Update Category");
         $(".changeInEdit").text("Modify Category");
+
         let inputAddCategory = $("#addCategory");
         inputAddCategory.val(filteredCategory);
         let errorAddCategory = $("#error-add-category");
+        let idCategory;
 
-        if (inputAddCategory.val() == null || inputAddCategory.val() == "") {
-          errorAddCategory.text("Please enter a category name");
-        } else {
-          dataToUpdate["category"] = inputAddCategory.val();
+        for (let i = 0; i < categoriesUserFiltered.length; i++) {
+          idCategory = categoriesUserFiltered[actualIndexCategory].id;
         }
 
         const modifyCategory = (categoryId) => {
+          console.log(categoryId);
           fetch(
             "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/categories/" +
               categoryId +
@@ -168,6 +175,25 @@ $("#btn-updateCategories").on("click", (e) => {
             }
           );
         };
+
+        $("#buttonAddCategory").on("click", (e) => {
+          if (JSON.parse(localStorage.getItem("isEditing")) == true) {
+            if (
+              inputAddCategory.val() == null ||
+              inputAddCategory.val() == ""
+            ) {
+              errorAddCategory.text("Please enter a category name");
+            } else {
+              dataToUpdate["category"] = inputAddCategory.val();
+              modifyCategory(idCategory);
+
+              $(".notHide").toggleClass("hide");
+              $("#buttonAddCategory").val("Add Category");
+              $(".changeInEdit").text("Add Category");
+              localStorage.setItem("isEditing", false);
+            }
+          }
+        });
       });
     });
 });
