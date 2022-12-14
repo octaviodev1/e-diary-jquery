@@ -151,8 +151,9 @@ $("#btn-updateCategories").on("click", (e) => {
         localStorage.setItem("isEditing", true);
 
         $(".notHide").toggleClass("hide");
-        $("#buttonAddCategory").val("Update Category");
+        $("#buttonAddCategory").toggleClass("hide");
         $(".changeInEdit").text("Modify Category");
+        $("#buttonUpdateCategory").toggleClass("hide");
 
         let inputAddCategory = $("#addCategory");
         inputAddCategory.val(filteredCategory);
@@ -164,7 +165,6 @@ $("#btn-updateCategories").on("click", (e) => {
         }
 
         const modifyCategory = (categoryId) => {
-          console.log(categoryId);
           fetch(
             "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/categories/" +
               categoryId +
@@ -173,10 +173,10 @@ $("#btn-updateCategories").on("click", (e) => {
               method: "PUT",
               body: JSON.stringify(dataToUpdate),
             }
-          );
+          ).then(updateCategories());
         };
 
-        $("#buttonAddCategory").on("click", (e) => {
+        $("#buttonUpdateCategory").on("click", (e) => {
           if (JSON.parse(localStorage.getItem("isEditing")) == true) {
             if (
               inputAddCategory.val() == null ||
@@ -186,10 +186,12 @@ $("#btn-updateCategories").on("click", (e) => {
             } else {
               dataToUpdate["category"] = inputAddCategory.val();
               modifyCategory(idCategory);
-
+              updateCategories();
+              inputAddCategory.val("");
               $(".notHide").toggleClass("hide");
-              $("#buttonAddCategory").val("Add Category");
               $(".changeInEdit").text("Add Category");
+              $("#buttonAddCategory").toggleClass("hide");
+              $("#buttonUpdateCategory").toggleClass("hide");
               localStorage.setItem("isEditing", false);
             }
           }
