@@ -1,7 +1,7 @@
+import updateNotes from "./notes.js";
 $("#btn-login").on("click", (e) => {
   let loginNickname = $("#login-nickname");
   let loginPassword = $("#login-password");
-
   fetch(
     "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/users.json",
     {
@@ -56,6 +56,7 @@ $("#btn-login").on("click", (e) => {
           loginNickname.val("");
           loginPassword.val("");
           updateCategories();
+          updateNotes();
           sendToDashboardPage();
         }
       }
@@ -87,5 +88,4 @@ const sendToDashboardPage = () => {
   document.getElementById("btn-goToDashboard").click();
 };
 
-export { transformData };
-export { updateCategories };
+export { transformData, updateCategories };

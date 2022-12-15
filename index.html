@@ -45,6 +45,15 @@
             Categories
           </button>
         </li>
+        <li>
+          <button
+            class="btn-link"
+            data-route="/index.html#notes"
+            id="btn-notesPage"
+          >
+            Notes
+          </button>
+        </li>
       </ul>
     </nav>
 
@@ -210,11 +219,11 @@
           class="addCategorySubmit"
         />
         <input
-        type="button"
-        id="buttonUpdateCategory"
-        value="Update Category "
-        class="updateCategory hide"
-      />
+          type="button"
+          id="buttonUpdateCategory"
+          value="Update Category "
+          class="updateCategory hide"
+        />
       </form>
 
       <h1 class="notHide">Manage Categories</h1>
@@ -234,6 +243,31 @@
         <tbody id="categoriesData"></tbody>
       </table>
     </section>
+
+    <section class="section" id="notes-page">
+      <h1>Add Note</h1>
+      <button id="updateNotes" class="hide"></button>
+      <label for="noteSelect">Category Name:</label>
+      <select id="noteSelect"></select
+      ><br /><br />
+
+      <label for="noteTitle" class="required categoryLabel">Note Title:</label>
+      <input
+        type="text"
+        id="noteTitle"
+        name="noteTitle"
+        placeholder="Enter the note title"
+      /><br /><br />
+
+      <label for="textareaNoteDescription" class="required categoryLabel"
+        >Note Description:
+        <textarea
+          class="textareaNote"
+          placeholder="Enter Note Description"
+          id="textareaNoteDescription"
+        ></textarea>
+      </label>
+    </section>
   </body>
 
   <script
@@ -248,4 +282,5 @@
   <script src="register.js" type="module"></script>
   <script src="logged.js" type="module"></script>
   <script src="categories.js" type="module"></script>
+  <script src="notes.js" type="module"></script>
 </html>

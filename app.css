@@ -65,3 +65,13 @@ nav li:hover {
 .hide {
   display: none;
 }
+
+textarea.textareaNote {
+  overflow: hidden;
+  width: 200px;
+  height: 100px;
+}
+
+label textarea {
+  vertical-align: middle;
+}

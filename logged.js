@@ -6,4 +6,6 @@ $("#btn-logout").on("click", (e) => {
   if (JSON.parse(localStorage.getItem("logged")) == false) {
     $("#btn-loginPage").text("Login");
   }
+
+  $("#noteSelect").html("");
 });

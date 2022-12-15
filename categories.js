@@ -1,8 +1,11 @@
-import { transformData } from "./login.js";
-import { updateCategories } from "./login.js";
+import { transformData, updateCategories } from "./login.js";
+import updateNotes from "./notes.js";
 
 $("#formCategories").on("keypress", (e) => {
-  updateCategories();
+  if (e.which == 13) {
+    e.preventDefault();
+    return false;
+  }
 });
 
 $("#formCategories").on("submit", (e) => {
@@ -64,7 +67,8 @@ $("#formCategories").on("submit", (e) => {
             }
           )
             .then(userCategory.val(""))
-            .then(updateCategories());
+            .then(updateCategories())
+            .then(updateNotes());
         }
       }
     });
@@ -184,6 +188,7 @@ $("#btn-updateCategories").on("click", (e) => {
             ) {
               errorAddCategory.text("Please enter a category name");
             } else {
+              errorAddCategory.text("");
               dataToUpdate["category"] = inputAddCategory.val();
               modifyCategory(idCategory);
               updateCategories();
