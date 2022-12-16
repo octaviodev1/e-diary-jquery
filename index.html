@@ -233,8 +233,7 @@
         <thead>
           <tr class="active-row">
             <th>Category</th>
-            <!-- <th>Date of Birth</th>
-            <th>E-mail</th>
+            <!-- 
             <th></th>
             <th></th>
             <th></th> -->
@@ -257,7 +256,8 @@
         id="noteTitle"
         name="noteTitle"
         placeholder="Enter the note title"
-      /><br /><br />
+      /><br />
+      <span class="error" id="error-noteTitle"></span><br /><br />
 
       <label for="textareaNoteDescription" class="required categoryLabel"
         >Note Description:
@@ -265,8 +265,21 @@
           class="textareaNote"
           placeholder="Enter Note Description"
           id="textareaNoteDescription"
-        ></textarea>
-      </label>
+        ></textarea></label
+      ><br />
+      <span class="error" id="error-noteDescription"></span><br /><br />
+      <button id="addNote">Add Note</button>
+
+      <h1>Manage Notes</h1>
+      <table id="notesTable" class="styled-table">
+        <thead>
+          <tr class="active-row">
+            <th>Note Title</th>
+            <th>Category</th>
+          </tr>
+        </thead>
+        <tbody id="categoriesData"></tbody>
+      </table>
     </section>
   </body>
 

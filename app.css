@@ -67,6 +67,8 @@ nav li:hover {
 }
 
 textarea.textareaNote {
+  min-width: 200px;
+  min-height: 50px;
   overflow: hidden;
   width: 200px;
   height: 100px;
