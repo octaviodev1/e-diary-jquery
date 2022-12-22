@@ -1,4 +1,5 @@
-import updateNotes from "./notes.js";
+import { updateManageNotes, updateNotes } from "./notes.js";
+
 $("#btn-login").on("click", (e) => {
   let loginNickname = $("#login-nickname");
   let loginPassword = $("#login-password");
@@ -57,6 +58,7 @@ $("#btn-login").on("click", (e) => {
           loginPassword.val("");
           updateCategories();
           updateNotes();
+          updateManageNotes();
           sendToDashboardPage();
         }
       }

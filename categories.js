@@ -1,5 +1,5 @@
 import { transformData, updateCategories } from "./login.js";
-import updateNotes from "./notes.js";
+import { updateNotes, updateManageNotes } from "./notes.js";
 
 $("#formCategories").on("keypress", (e) => {
   if (e.which == 13) {
@@ -68,7 +68,8 @@ $("#formCategories").on("submit", (e) => {
           )
             .then(userCategory.val(""))
             .then(updateCategories())
-            .then(updateNotes());
+            .then(updateNotes())
+            .then(updateManageNotes());
         }
       }
     });

@@ -1,5 +1,39 @@
 import { transformData } from "./login.js";
 
+const updateManageNotes = (e) => {
+  fetch(
+    "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/notes.json",
+    {
+      method: "GET",
+    }
+  )
+    .then((response) => response.json())
+    .then((data) => transformData(data))
+    .then((data) => {
+      let userNotes = data;
+
+      let loggedUserId = JSON.parse(localStorage.getItem("loggedInUser"))[0].id;
+
+      const userIdNotes = (user) => {
+        return user.userId === loggedUserId;
+      };
+
+      let notesUserFiltered = userNotes.filter(userIdNotes);
+      let temp = "";
+      for (let i = 0; i < notesUserFiltered.length; i++) {
+        temp += "<tr>";
+        temp += "<td>" + notesUserFiltered[i].noteTitle + "</td>";
+        temp += "<td>" + notesUserFiltered[i].categoryValue + "</td>";
+        temp +=
+          "<td> <button type='button' class='buttonView'>View</button> </td>";
+        temp +=
+          "<td> <button type='button' class='buttonDelete'>Delete</button> </td></tr>";
+      }
+      $("#notesData").html(temp);
+      console.log(notesUserFiltered);
+    });
+};
+
 const updateNotes = (e) => {
   document.getElementById("updateNotes").click();
 };
@@ -28,7 +62,7 @@ $("#updateNotes").on("click", (e) => {
       for (let i = 0; i < categoriesUserFiltered.length; i++) {
         temp +=
           "<option id=" +
-          categoriesUserFiltered[i].id +
+          categoriesUserFiltered[i].userId +
           ">" +
           categoriesUserFiltered[i].category +
           "</option>";
@@ -36,7 +70,6 @@ $("#updateNotes").on("click", (e) => {
       $("#noteSelect").html(temp);
     });
 });
-updateNotes();
 
 $("#addNote").on("click", (e) => {
   let categoryName = $("#noteSelect");
@@ -46,7 +79,8 @@ $("#addNote").on("click", (e) => {
   let errorNoteTitle = $("#error-noteTitle");
   let errorNoteDescription = $("#error-noteDescription");
 
-  let categoryId = categoryName.find(":selected").attr("id");
+  let categoryValue = categoryName.find(":selected").val();
+  let categoryUserId = categoryName.find(":selected").attr("id");
 
   let notePost = {};
 
@@ -57,7 +91,8 @@ $("#addNote").on("click", (e) => {
     valid.push("false");
   } else {
     valid.push("true");
-    notePost.categoryId = categoryId;
+    notePost.categoryValue = categoryValue;
+    notePost.userId = categoryUserId;
     notePost.noteTitle = noteTitle.val();
     errorNoteTitle.text("");
     noteTitle.val("");
@@ -84,21 +119,11 @@ $("#addNote").on("click", (e) => {
         method: "POST",
         body: JSON.stringify(notePost),
       }
-    );
+    ).then((data) => {
+      updateManageNotes();
+      updateNotes();
+    });
   }
 });
 
-fetch(
-  "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/notes.json",
-  {
-    method: "GET",
-  }
-)
-  .then((response) => response.json())
-  .then((data) => transformData(data))
-  .then((data) => {
-    let userNotes = data;
-    console.log(userNotes);
-  });
-
-export default updateNotes;
+export { updateManageNotes, updateNotes };
