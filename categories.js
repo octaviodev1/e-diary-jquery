@@ -106,7 +106,7 @@ $("#btn-updateCategories").on("click", (e) => {
           "<td> <button type='button' id=" +
           categoriesUserFiltered[i].id +
           " " +
-          "class='buttonDelete'>Delete</button> </td>";
+          "class='buttonDeleteCategory'>Delete</button> </td>";
         temp +=
           "<td> <button type='button' id=" +
           "category" +
@@ -155,7 +155,7 @@ $("#btn-updateCategories").on("click", (e) => {
 
         localStorage.setItem("isEditing", true);
 
-        $(".notHide").toggleClass("hide");
+        $(".notHideCategories").toggleClass("hide");
         $("#buttonAddCategory").toggleClass("hide");
         $(".changeInEdit").text("Modify Category");
         $("#buttonUpdateCategory").toggleClass("hide");
@@ -194,7 +194,7 @@ $("#btn-updateCategories").on("click", (e) => {
               modifyCategory(idCategory);
               updateCategories();
               inputAddCategory.val("");
-              $(".notHide").toggleClass("hide");
+              $(".notHideCategories").toggleClass("hide");
               $(".changeInEdit").text("Add Category");
               $("#buttonAddCategory").toggleClass("hide");
               $("#buttonUpdateCategory").toggleClass("hide");

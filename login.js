@@ -59,6 +59,7 @@ $("#btn-login").on("click", (e) => {
           updateCategories();
           updateNotes();
           updateManageNotes();
+
           sendToDashboardPage();
         }
       }

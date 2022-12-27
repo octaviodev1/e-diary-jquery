@@ -8,4 +8,5 @@ $("#btn-logout").on("click", (e) => {
   }
 
   $("#noteSelect").html("");
+  document.location.reload(true);
 });
