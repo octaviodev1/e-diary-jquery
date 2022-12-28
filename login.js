@@ -1,5 +1,5 @@
 import { updateManageNotes, updateNotes } from "./notes.js";
-
+import { updateCountOfNotes, updateCountOfCategories } from "./dashboard.js";
 $("#btn-login").on("click", (e) => {
   let loginNickname = $("#login-nickname");
   let loginPassword = $("#login-password");
@@ -54,12 +54,15 @@ $("#btn-login").on("click", (e) => {
         } else {
           localStorage.setItem("loggedInUser", JSON.stringify(userLogged));
           localStorage.setItem("logged", true);
+          localStorage.setItem("isEditing", false);
           loginNickname.val("");
           loginPassword.val("");
           updateCategories();
           updateNotes();
           updateManageNotes();
-
+          updateCountOfNotes();
+          updateCountOfCategories();
+          
           sendToDashboardPage();
         }
       }

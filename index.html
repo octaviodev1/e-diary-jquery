@@ -73,10 +73,10 @@
       <input type="password" id="login-password" /><br />
       <span class="error" id="error-login-password"></span><br /><br />
 
-      <button id="btn-login">iniciar sesión</button>
+      <button id="btn-login" class="pageButton">iniciar sesión</button>
 
       <p>Register here:</p>
-      <button class="btn-link" data-route="/index.html#register">
+      <button class="btn-link pageButton" data-route="/index.html#register">
         Register Page
       </button>
 
@@ -94,7 +94,15 @@
     </section>
 
     <section class="section" id="dashboard-page">
-      <button id="btn-dashboard-login">Ver datos de usuario</button>
+      <div class="centerDashboard">
+        <fieldset>
+          <p>Total Notes: <span id="totalNotes"></span></p>
+        </fieldset>
+        <fieldset>
+          <p>Listed Categories: <span id="totalCategories"></span></p>
+        </fieldset>
+      </div>
+      <!-- <button id="btn-dashboard-login">Ver datos de usuario</button> -->
     </section>
 
     <section class="section" id="register-page">
@@ -171,7 +179,7 @@
             type="submit"
             id="buttonRegisterUser"
             value="Register User"
-            class="registerUser"
+            class="registerUser pageButton"
           />
         </div>
       </form>
@@ -184,7 +192,7 @@
 
     <section class="section" id="logged-page">
       <h1>Already logged</h1>
-      <button class="logout" id="btn-logout">Logout</button>
+      <button class="logout pageButton" id="btn-logout">Logout</button>
 
       <button
         class="btn-link btn-hide"
@@ -216,13 +224,13 @@
           type="submit"
           id="buttonAddCategory"
           value="Add Category "
-          class="addCategorySubmit"
+          class="addCategorySubmit pageButton"
         />
         <input
           type="button"
           id="buttonUpdateCategory"
           value="Update Category "
-          class="updateCategory hide"
+          class="updateCategory pageButton hide"
         />
       </form>
 
@@ -233,6 +241,8 @@
         <thead>
           <tr class="active-row">
             <th>Category</th>
+            <th></th>
+            <th></th>
             <!-- 
             <th></th>
             <th></th>
@@ -246,11 +256,13 @@
     <section class="section" id="notes-page">
       <h1>Add Note</h1>
       <button id="updateNotes" class="hide"></button>
-      <label for="noteSelect">Category Name:</label>
+
+      <label for="noteSelect">Category Name:</label><br />
       <select id="noteSelect"></select
       ><br /><br />
 
-      <label for="noteTitle" class="required categoryLabel">Note Title:</label>
+      <label for="noteTitle" class="required categoryLabel">Note Title:</label
+      ><br />
       <input
         type="text"
         id="noteTitle"
@@ -260,15 +272,18 @@
       <span class="error" id="error-noteTitle"></span><br /><br />
 
       <label for="textareaNoteDescription" class="required categoryLabel"
-        >Note Description:
-        <textarea
-          class="textareaNote"
-          placeholder="Enter Note Description"
-          id="textareaNoteDescription"
-        ></textarea></label
+        >Note Description:</label
       ><br />
+      <textarea
+        class="textareaNote"
+        placeholder="Enter Note Description"
+        id="textareaNoteDescription"
+      ></textarea
+      ><br />
+
       <span class="error" id="error-noteDescription"></span><br /><br />
-      <button id="addNote">Add Note</button>
+
+      <button id="addNote" class="pageButton">Add Note</button><br />
 
       <h1>Manage Notes</h1>
       <table id="notesTable" class="styled-table">
@@ -276,6 +291,8 @@
           <tr class="active-row">
             <th>Note Title</th>
             <th>Category</th>
+            <th></th>
+            <th></th>
           </tr>
         </thead>
         <tbody id="notesData"></tbody>
@@ -283,8 +300,7 @@
       <div class="notHideNote hide">
         <h1>Note Details</h1>
         <table id="notesDetailsTable" class="styled-table">
-          <tbody id="notesDetailsData">
-          </tbody>
+          <tbody id="notesDetailsData"></tbody>
         </table>
       </div>
     </section>
@@ -298,9 +314,9 @@
   <script src="https://cdn.jsdelivr.net/npm/jqueryrouter@2.2.11/dist/js/jquery.router.min.js"></script>
   <script src="index.js" type="module"></script>
   <script src="login.js" type="module"></script>
-  <script src="dashboard.js" type="module"></script>
   <script src="register.js" type="module"></script>
   <script src="logged.js" type="module"></script>
   <script src="categories.js" type="module"></script>
   <script src="notes.js" type="module"></script>
+  <script src="dashboard.js" type="module"></script>
 </html>

@@ -1,4 +1,5 @@
 import { transformData } from "./login.js";
+import { updateCountOfNotes } from "./dashboard.js";
 
 // Delete Note
 const deleteNote = (noteClass) => {
@@ -59,7 +60,6 @@ const viewNoteDetails = (noteClass) => {
         console.log(selectedNote);
       }
       $("#notesDetailsData").html(temp);
-
     });
 };
 
@@ -88,12 +88,12 @@ const updateManageNotes = (e) => {
         temp += "<td>" + notesUserFiltered[i].noteTitle + "</td>";
         temp += "<td>" + notesUserFiltered[i].categoryValue + "</td>";
         temp +=
-          "<td> <button type='button' class='buttonViewNote" +
+          "<td> <button type='button' class='buttonViewNote pageButton" +
           " " +
           notesUserFiltered[i].id +
           "'>View</button> </td>";
         temp +=
-          "<td> <button type='button' class='buttonDeleteNote" +
+          "<td> <button type='button' class='buttonDeleteNote pageButton" +
           " " +
           notesUserFiltered[i].id +
           "'>Delete</button> </td></tr>";
@@ -202,6 +202,7 @@ $("#addNote").on("click", (e) => {
     ).then((data) => {
       updateManageNotes();
       updateNotes();
+      updateCountOfNotes();
     });
   }
 });

@@ -1,5 +1,6 @@
 import { transformData, updateCategories } from "./login.js";
 import { updateNotes, updateManageNotes } from "./notes.js";
+import { updateCountOfCategories } from "./dashboard.js";
 
 $("#formCategories").on("keypress", (e) => {
   if (e.which == 13) {
@@ -65,11 +66,13 @@ $("#formCategories").on("submit", (e) => {
               method: "POST",
               body: JSON.stringify(categoryPost),
             }
-          )
-            .then(userCategory.val(""))
-            .then(updateCategories())
-            .then(updateNotes())
-            .then(updateManageNotes());
+          ).then((data) => {
+            userCategory.val("");
+            updateCategories();
+            updateNotes();
+            updateManageNotes();
+            updateCountOfCategories();
+          });
         }
       }
     });
@@ -106,13 +109,13 @@ $("#btn-updateCategories").on("click", (e) => {
           "<td> <button type='button' id=" +
           categoriesUserFiltered[i].id +
           " " +
-          "class='buttonDeleteCategory'>Delete</button> </td>";
+          "class='buttonDeleteCategory pageButton'>Delete</button> </td>";
         temp +=
           "<td> <button type='button' id=" +
           "category" +
           i +
           " " +
-          "class='buttonModifyCategory'>Modify</button> </td></tr>";
+          "class='buttonModifyCategory pageButton'>Modify</button> </td></tr>";
       }
       $("#categoriesData").html(temp);
 
