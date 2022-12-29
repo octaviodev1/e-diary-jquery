@@ -51,7 +51,7 @@ const validationRegisterInputs = (e) => {
     errorMobileNumber.text("Mobile Number is required");
     valid.push("false");
     mobileNumber.val("");
-  } else if (mobileNumber.val().length < 9) {
+  } else if (mobileNumber.val().length > 9) {
     errorMobileNumber.text("Mobile Number is not valid");
     valid.push("false");
     mobileNumber.val("");
@@ -108,8 +108,9 @@ const validationRegisterInputs = (e) => {
         method: "POST",
         body: JSON.stringify(dataPost),
       }
-    );
-    returnToLoginPage();
+    ).then((data) => {
+      returnToLoginPage();
+    });
   }
 };
 

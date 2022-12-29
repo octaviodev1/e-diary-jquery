@@ -40,7 +40,6 @@ const updateCountOfCategories = (e) => {
       const userIdNotes = (user) => {
         return user.userId === loggedUserId;
       };
-      console.log(userCategories);
       let countOfCategories = userCategories.filter(userIdNotes).length;
       $("#totalCategories").text(countOfCategories);
     });

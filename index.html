@@ -233,24 +233,25 @@
           class="updateCategory pageButton hide"
         />
       </form>
+      <div id="manageCategories">
+        <h1 class="notHideCategories">Manage Categories</h1>
+        <button class="btn-hide" id="btn-updateCategories"></button>
 
-      <h1 class="notHideCategories">Manage Categories</h1>
-      <button class="btn-hide" id="btn-updateCategories"></button>
-
-      <table id="categoriesTable" class="styled-table notHideCategories">
-        <thead>
-          <tr class="active-row">
-            <th>Category</th>
-            <th></th>
-            <th></th>
-            <!-- 
+        <table id="categoriesTable" class="styled-table notHideCategories">
+          <thead>
+            <tr class="active-row">
+              <th>Category</th>
+              <th></th>
+              <th></th>
+              <!-- 
             <th></th>
             <th></th>
             <th></th> -->
-          </tr>
-        </thead>
-        <tbody id="categoriesData"></tbody>
-      </table>
+            </tr>
+          </thead>
+          <tbody id="categoriesData"></tbody>
+        </table>
+      </div>
     </section>
 
     <section class="section" id="notes-page">
@@ -259,7 +260,8 @@
 
       <label for="noteSelect">Category Name:</label><br />
       <select id="noteSelect"></select
-      ><br /><br />
+      ><br />
+      <span class="error" id="error-noteSelect"></span><br /><br />
 
       <label for="noteTitle" class="required categoryLabel">Note Title:</label
       ><br />
@@ -284,24 +286,25 @@
       <span class="error" id="error-noteDescription"></span><br /><br />
 
       <button id="addNote" class="pageButton">Add Note</button><br />
-
-      <h1>Manage Notes</h1>
-      <table id="notesTable" class="styled-table">
-        <thead>
-          <tr class="active-row">
-            <th>Note Title</th>
-            <th>Category</th>
-            <th></th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="notesData"></tbody>
-      </table>
-      <div class="notHideNote hide">
-        <h1>Note Details</h1>
-        <table id="notesDetailsTable" class="styled-table">
-          <tbody id="notesDetailsData"></tbody>
+      <div id="manageNotes">
+        <h1>Manage Notes</h1>
+        <table id="notesTable" class="styled-table">
+          <thead>
+            <tr class="active-row">
+              <th>Note Title</th>
+              <th>Category</th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="notesData"></tbody>
         </table>
+        <div class="notHideNote hide">
+          <h1>Note Details</h1>
+          <table id="notesDetailsTable" class="styled-table">
+            <tbody id="notesDetailsData"></tbody>
+          </table>
+        </div>
       </div>
     </section>
   </body>

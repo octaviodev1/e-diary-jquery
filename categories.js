@@ -41,6 +41,7 @@ $("#formCategories").on("submit", (e) => {
       const categoryValidation = (category) => {
         return category === addCategoryInput.val();
       };
+
       if (JSON.parse(localStorage.getItem("isEditing")) == true) {
         return;
       } else {
@@ -67,10 +68,16 @@ $("#formCategories").on("submit", (e) => {
               body: JSON.stringify(categoryPost),
             }
           ).then((data) => {
+            if ($("#manageCategories").hasClass("hide")) {
+              $("#manageCategories").toggleClass("hide");
+            } else {
+              updateManageNotes();
+            }
+
             userCategory.val("");
             updateCategories();
             updateNotes();
-            updateManageNotes();
+
             updateCountOfCategories();
           });
         }
@@ -100,6 +107,11 @@ $("#btn-updateCategories").on("click", (e) => {
       let actualIndexCategories = [];
       let actualIdCategories = [];
       let temp = "";
+
+      if (categoriesUserFiltered.length == 0) {
+        $("#manageCategories").toggleClass("hide");
+      }
+
       for (let i = 0; i < categoriesUserFiltered.length; i++) {
         actualIndexCategories.push(categoriesUserFiltered[i].category);
         actualIdCategories.push(categoriesUserFiltered[i].id);
@@ -135,6 +147,7 @@ $("#btn-updateCategories").on("click", (e) => {
             }
           ).then((resp) => {
             updateCategories();
+            updateNotes();
           });
         };
       }
@@ -181,7 +194,10 @@ $("#btn-updateCategories").on("click", (e) => {
               method: "PUT",
               body: JSON.stringify(dataToUpdate),
             }
-          ).then(updateCategories());
+          ).then((resp) => {
+            updateCategories();
+            updateNotes();
+          });
         };
 
         $("#buttonUpdateCategory").on("click", (e) => {

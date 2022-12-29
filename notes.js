@@ -3,7 +3,7 @@ import { updateCountOfNotes } from "./dashboard.js";
 
 // Delete Note
 const deleteNote = (noteClass) => {
-  let noteId = noteClass.split("buttonDeleteNote ")[1];
+  let noteId = noteClass.split("buttonDeleteNote pageButton ")[1];
 
   fetch(
     "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/notes/" +
@@ -13,6 +13,9 @@ const deleteNote = (noteClass) => {
       method: "DELETE",
     }
   ).then((data) => {
+    if (!$(".notHideNote").hasClass("hide")) {
+      $(".notHideNote").toggleClass("hide");
+    }
     updateManageNotes();
   });
 };
@@ -23,7 +26,7 @@ const viewNoteDetails = (noteClass) => {
     $(".notHideNote").toggleClass("hide");
   }
 
-  let noteId = noteClass.split("buttonViewNote ")[1];
+  let noteId = noteClass.split("buttonViewNote pageButton ")[1];
 
   fetch(
     "https://ediary-jquery-default-rtdb.europe-west1.firebasedatabase.app/notes.json",
@@ -42,6 +45,7 @@ const viewNoteDetails = (noteClass) => {
 
       let selectedNote = userNotes.filter(userSelectedNote);
       let temp = "";
+
       for (let i = 0; i < selectedNote.length; i++) {
         temp += "<tr>";
         temp += "<th>" + "Note Title" + "</th>";
@@ -57,7 +61,6 @@ const viewNoteDetails = (noteClass) => {
         temp += "<th>" + "Note Details" + "</th>";
         temp += "<td>" + selectedNote[i].noteDescription + "</td>";
         temp += "</tr>";
-        console.log(selectedNote);
       }
       $("#notesDetailsData").html(temp);
     });
@@ -82,7 +85,13 @@ const updateManageNotes = (e) => {
       };
 
       let notesUserFiltered = userNotes.filter(userIdNotes);
+
       let temp = "";
+
+      if (notesUserFiltered.length == 0) {
+        $("#manageNotes").toggleClass("hide");
+      }
+
       for (let i = 0; i < notesUserFiltered.length; i++) {
         temp += "<tr>";
         temp += "<td>" + notesUserFiltered[i].noteTitle + "</td>";
@@ -139,6 +148,7 @@ $("#updateNotes").on("click", (e) => {
       let categoriesUserFiltered = usersCategories.filter(userIdCategories);
 
       let temp = "";
+
       for (let i = 0; i < categoriesUserFiltered.length; i++) {
         temp +=
           "<option id=" +
@@ -158,6 +168,7 @@ $("#addNote").on("click", (e) => {
 
   let errorNoteTitle = $("#error-noteTitle");
   let errorNoteDescription = $("#error-noteDescription");
+  let errorNoteSelect = $("#error-noteSelect");
 
   let categoryValue = categoryName.find(":selected").val();
   let categoryUserId = categoryName.find(":selected").attr("id");
@@ -165,6 +176,13 @@ $("#addNote").on("click", (e) => {
   let notePost = {};
 
   let valid = [];
+
+  if (categoryValue == null || categoryValue == "") {
+    errorNoteSelect.text("Please create a category");
+    valid.push("false");
+  } else {
+    errorNoteSelect.text("");
+  }
 
   if (noteTitle.val() == null || noteTitle.val() == "") {
     errorNoteTitle.text("Please enter a Title");
@@ -200,6 +218,10 @@ $("#addNote").on("click", (e) => {
         body: JSON.stringify(notePost),
       }
     ).then((data) => {
+      if ($("#manageNotes").hasClass("hide")) {
+        $("#manageNotes").toggleClass("hide");
+      }
+
       updateManageNotes();
       updateNotes();
       updateCountOfNotes();
